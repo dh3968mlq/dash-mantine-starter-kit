@@ -1,16 +1,19 @@
+'''
+Create layout
+Layout is defined in styles.css whenever it's possible and elegant
+...since it keeps the code shorter and more focussed on functionality
+Many things such as position and size of elements could instead be specified in the code here
+'''
 import dash_mantine_components as dmc
 from dash import html, page_container
 from dash_iconify import DashIconify
 
-# -- These replicate custom properties in styles.css
-navbar_width = 300    # px is assumed by dmc
-aside_width = 300
-header_height = 70
+# -- These replicate variables (custom properties) defined in styles.css as required
+header_height = 70    # px is assumed by dmc
 
 def create_header():
     header = dmc.Header(
-        height=header_height,   # Required
-        fixed=True, 
+        height=header_height,   # Required here, setting it in CSS is not enough
         className="page-header",
         children=[
             html.H1("Header Section")
@@ -20,9 +23,6 @@ def create_header():
 # --------------------------------------------------------------------------------------------------
 def create_side_navbar():
     navbar = dmc.Navbar(
-        fixed=True,
-        position={"top": header_height},
-        width={"base": navbar_width}, 
         className="page-navbar",
         children=[
             html.H3("Side Navbar Section")
@@ -32,9 +32,6 @@ def create_side_navbar():
 # --------------------------------------------------------------------------------------------------
 def create_aside():
     aside = dmc.Aside(
-        fixed=True,
-        position={"top": header_height, "right": 0},
-        width={"base": aside_width}, 
         className="page-aside",
         children=[
             html.H3("Aside section")
@@ -50,8 +47,9 @@ def create_body():
     return body
 # --------------------------------------------------------------------------------------------------
 def get_layout():
-    layout = dmc.MantineProvider(
-        children=dmc.NotificationsProvider(
+    layout = dmc.MantineProvider(   # https://mantine.dev/theming/mantine-provider/
+        theme={},         # https://www.dash-mantine-components.com/components/mantineprovider
+        children=dmc.NotificationsProvider( # https://www.dash-mantine-components.com/components/notification
                 [
                     create_header(),
                     create_side_navbar(),

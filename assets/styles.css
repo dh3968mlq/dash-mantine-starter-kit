@@ -6,10 +6,23 @@
 
 .page-header {
   border: 2px solid red;
+  position: fixed;
+  height: var(--header-height);
 }
 
 .page-navbar {
   border: 2px solid blue;
+  width: 300px;
+  position: fixed;
+  top: var(--header-height);
+}
+
+.page-aside {
+  border: 2px solid blue;
+  width: 300px;
+  position: fixed;
+  top: var(--header-height);
+  right: 0;
 }
 
 .page-body {
@@ -20,4 +33,23 @@
     padding-left: 10px;
     padding-right: 10px;
     border: 2px solid black;
+}
+
+
+@media only screen and (max-width: 1500px) {
+  .page-aside {
+      display: none;
+  }
+  .page-body {
+      margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .page-navbar {
+      display: none;
+  }
+  .page-body {
+      margin-left: 0;
+  }
 }
