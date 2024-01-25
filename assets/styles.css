@@ -1,0 +1,23 @@
+:root {
+    --navbar-width: 300px;
+    --aside-width: 300px;
+    --header-height: 70px;
+  }
+
+.page-header {
+  border: 2px solid red;
+}
+
+.page-navbar {
+  border: 2px solid blue;
+}
+
+.page-body {
+    padding: 10px;
+    margin-left: var(--navbar-width); /* Position to right of navbar (~ left sidebar) */
+    margin-right: var(--aside-width); /* Position to left of Aside (~right sidebar) */
+    margin-top: var(--header-height); /* Position below the Header */
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px solid black;
+}
