@@ -4,7 +4,7 @@ import gunicorn # Necessary for Heroku?
 import applayout
 
 app = Dash(__name__,
-        #use_pages=True,
+        use_pages=True,
 )
 server = app.server  # Necessary for Heroku?
 

@@ -5,7 +5,6 @@ import dash_mantine_components as dmc
 from dash import Output, Input, clientside_callback, html, dcc, page_container, State
 from dash_iconify import DashIconify
 
-
 def get_layout():
     layout = dmc.MantineProvider(
         dmc.MantineProvider(
@@ -20,7 +19,8 @@ def get_layout():
             },
             inherit=True,
             children=[
-                html.H2("Hello World")
+                html.H2("Hello World"),
+                page_container
             ],
         ),
         theme={"colorScheme": "light"},
@@ -29,5 +29,3 @@ def get_layout():
         withNormalizeCSS=True,
     )
     return layout
-
-
