@@ -1,6 +1,6 @@
 '''
     Author David Harris 2024 
-    # -- ... drawing heavily on https://github.com/snehilvj/dmc-docs
+    # -- ... drawing on https://github.com/snehilvj/dmc-docs
 '''
 from dash import Dash, page_registry
 import gunicorn # Necessary for Heroku?
