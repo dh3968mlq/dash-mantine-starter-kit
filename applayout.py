@@ -5,7 +5,7 @@ Layout is defined in styles.css whenever it's possible and elegant
 Many things such as position and size of elements could instead be specified in the code here
 '''
 import dash_mantine_components as dmc
-from dash import html, page_container
+from dash import html, page_container, clientside_callback, Input, Output
 from dash_iconify import DashIconify
 
 # -- These replicate variables (custom properties) defined in styles.css as required
@@ -29,63 +29,106 @@ def create_header_link(icon, href, size=22, color="indigo"):
 
 def create_header_left_column(nav_data):
     hl = dmc.Col(
-            [
-                dmc.MediaQuery(
-                    html.H2("Dash Mantime Starter Kit"),
-                    smallerThan="lg",
-                    styles={"display": "none"},
-                ),
-                dmc.MediaQuery(
-                    html.H3("DMC Starter Kit"),
-                    largerThan="lg",
-                    styles={"display": "none"},
-                ),
-            ],
-            span="content",
+        [
+            dmc.MediaQuery(
+                html.H2("Dash Mantime Starter Kit"),
+                smallerThan="lg",
+                styles={"display": "none"},
+            ),
+            dmc.MediaQuery(
+                html.H3("DMC Starter Kit"),
+                largerThan="lg",
+                styles={"display": "none"},
+            ),
+        ],
+        span="content",
     )
     return hl
 
 def create_header_right_column(nav_data):
     hr = dmc.Col(
-        span="auto",
         children=dmc.Group(
-            position="right",
-            spacing="xl",
             children=[
-                html.P("Hello"),
                 create_header_link(
                     "radix-icons:github-logo",
                     "https://github.com/dh3968mlq/dash-mantine-starter-kit",
                 ),
+                dmc.MediaQuery(
+                    dmc.ActionIcon(
+                        DashIconify(
+                            icon="radix-icons:hamburger-menu",
+                            width=18,
+                        ),
+                        id="drawer-hamburger-button",
+                        variant="outline",
+                        size=36,
+                    ),
+                    largerThan=1200,
+                    styles={"display": "none"},
+                ),
             ],
+            position="right",
+            spacing="xl",
         ),
+        span="auto",
     )
     return hr
 
 def create_header(nav_data):
     header = dmc.Header(
         height=header_height,   # Required here, setting it in CSS is not enough
-        children=dmc.Grid(
-            children=[
-                create_header_left_column(nav_data),
-                create_header_right_column(nav_data),
-            ],
-            align='center',    # Vertical alignment of content to center
-        ),
+        children=[
+            dmc.Space(h=12),  # styles.css sets all padding and margins within .page-header to 0
+            dmc.Grid(
+                children=[
+                    create_header_left_column(nav_data),
+                    create_header_right_column(nav_data),
+                ],
+                align='center',    # Vertical alignment of content to center
+            ),
+        ],
         className="page-header",
     )
     return header
 # --------------------------------------------------------------------------------------------------
-def create_side_navbar():
+def create_side_navbar(nav_data):
     navbar = dmc.Navbar(
         children=[
             html.H2("Left sidebar"),
             html.P("Uses dmc.Navbar"),
-            html.P("This sidebar disappears when screen width is below 1200px")
-        ],
+            html.P("This sidebar disappears when screen width is below 1200px"),
+        ] + create_side_nav_content(nav_data),
         className="page-navbar",
     )
     return navbar
+
+def create_navbar_drawer(nav_data):
+    return dmc.Drawer(
+        id="components-navbar-drawer",
+        overlayOpacity=0.55,
+        overlayBlur=3,
+        zIndex=9,
+        size=300,
+        children=[
+            dmc.ScrollArea(
+                offsetScrollbars=True,
+                type="scroll",
+                style={"height": "100vh"},
+                pt=20,
+                children=[
+                    html.H2("Left side drawer"),
+                    html.P("Uses dmc.Drawer"),
+                    html.P("This drawer becomes available when screen width is below 1200px"),
+                ] + create_side_nav_content(nav_data),
+            )
+        ],
+    )
+
+def create_side_nav_content(nav_data):
+    nav_content = [
+            html.P("Sidebar common content")
+    ]
+    return nav_content
 # --------------------------------------------------------------------------------------------------
 def create_aside():
     aside = dmc.Aside(
@@ -122,7 +165,8 @@ def get_layout(nav_data):
         children=dmc.NotificationsProvider( # https://www.dash-mantine-components.com/components/notification
                 [
                     create_header(nav_data),
-                    create_side_navbar(),
+                    create_side_navbar(nav_data),
+                    create_navbar_drawer(nav_data),
                     create_aside(),
                     create_body(),
                 ],
@@ -131,3 +175,10 @@ def get_layout(nav_data):
         withNormalizeCSS=True,
     )
     return layout
+# ---------------------------------------------------------
+clientside_callback(
+    """function(n_clicks) { return true }""",
+    Output("components-navbar-drawer", "opened"),
+    Input("drawer-hamburger-button", "n_clicks"),
+    prevent_initial_call=True,
+)
