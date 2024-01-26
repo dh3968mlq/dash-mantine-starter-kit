@@ -1,13 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
+
 :root {
     --navbar-width: 300px;
     --aside-width: 300px;
     --header-height: 70px;
   }
 
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
 .page-header {
-  border: 2px solid red;
   position: fixed;
   height: var(--header-height);
+  padding-left: 25px;
+  padding-right: 25px;
+  text-align: center;
+  /* Uncomment for debugging */
+  /* border: 2px solid red; */
 }
 
 .page-navbar {
@@ -26,7 +37,7 @@
 }
 
 .page-body {
-    padding: 10px;
+    /* padding: 10px; */
     margin-left: var(--navbar-width); /* Position to right of navbar (~ left sidebar) */
     margin-right: var(--aside-width); /* Position to left of Aside (~right sidebar) */
     margin-top: var(--header-height); /* Position below the Header */
@@ -35,7 +46,7 @@
     border: 2px solid black;
 }
 
-
+/* Hide (right-hand) Aside as page narrows */
 @media only screen and (max-width: 1500px) {
   .page-aside {
       display: none;
@@ -45,6 +56,7 @@
   }
 }
 
+/* Hide (left-hand) Navbar as page narrows */
 @media only screen and (max-width: 1200px) {
   .page-navbar {
       display: none;
