@@ -5,6 +5,7 @@ Layout is defined in styles.css whenever it's possible and elegant
 Many things such as position and size of elements could instead be specified in the code here
 '''
 import dash_mantine_components as dmc
+from dash import dcc
 from dash import html, page_container, clientside_callback, Input, Output
 from dash_iconify import DashIconify
 
@@ -31,7 +32,7 @@ def create_header_left_column(nav_data):
     hl = dmc.Col(
         [
             dmc.MediaQuery(
-                html.H2("Dash Mantime Starter Kit"),
+                html.H2("Dash Mantine Starter Kit"),
                 smallerThan="lg",
                 styles={"display": "none"},
             ),
@@ -124,12 +125,22 @@ def create_navbar_drawer(nav_data):
         ],
     )
 
+def create_side_navbar_link(nav_entry):
+    link = html.P(
+        # Use dmc.Navlink (or possibly dcc.Link) here, navigates without complete page
+        # reloads, and so much smoother and faster than using html.A
+        dcc.Link(nav_entry["name"], href=nav_entry["path"])
+    )
+    return link
+
 def create_side_nav_content(nav_data):
     nav_content = [
             html.P("Sidebar common content")
-    ]
+    ] + \
+    [create_side_navbar_link(entry) for entry in nav_data]
+
     return nav_content
-# --------------------------------------------------------------------------------------------------
+
 def create_aside():
     aside = dmc.Aside(
         children=[
@@ -140,7 +151,7 @@ def create_aside():
         className="page-aside",
     )
     return aside
-# --------------------------------------------------------------------------------------------------
+
 def create_body():
     body = dmc.Container(    # https://www.dash-mantine-components.com/components/container
             children=page_container,
@@ -148,7 +159,7 @@ def create_body():
             className="page-body"
     )
     return body
-# --------------------------------------------------------------------------------------------------
+
 def get_layout(nav_data):
     theme = {
                 "fontFamily": "'Inter', sans-serif",

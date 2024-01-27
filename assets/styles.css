@@ -11,6 +11,12 @@
     padding: 0;
     box-sizing: border-box;
 } */
+
+p {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
 .page-header {
   position: fixed;
   height: var(--header-height);

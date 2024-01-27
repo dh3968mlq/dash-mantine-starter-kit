@@ -1,7 +1,7 @@
 import dash
 from dash import html
 
-dash.register_page(__name__, path='/', title='Dash Mantime Starter Kit')
+dash.register_page(__name__, path='/', title='Dash Mantine Starter Kit')
 
 lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " \
         "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " \
