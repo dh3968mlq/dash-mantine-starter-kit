@@ -1,28 +1,28 @@
-import dash
-from dash import html
+from dash import html, register_page
+import dash_mantine_components as dmc
 from lib.lorem import lorem
 
-dash.register_page(__name__, path='/', title='Dash Mantine Starter Kit')
+register_page(__name__, path='/', title='Dash Mantine Starter Kit')
 
 layout = html.Div([
-    html.H1('Home page'),
-    html.P(
+    dmc.Title('Home page', order=1),
+    dmc.Text(
         [
             'A template with boilerplate code for creating a basic website using',
             ' Dash and Dash Mantine components. ',
-            html.A('Code on Github', href="https://github.com/dh3968mlq/dash-mantine-starter-kit")
+            dmc.Anchor('Code on Github', href="https://github.com/dh3968mlq/dash-mantine-starter-kit", target="_blank")
         ]
     ),
-    html.H2('Dash and Mantine Components'),
-    html.P(
+    dmc.Title('Dash and Mantine Components', order=2),
+    dmc.Text(
         [
-            html.A('Dash', href="https://dash.plotly.com/", target="_blank"),
+            dmc.Anchor('Dash', href="https://dash.plotly.com/", target="_blank"),
               ' allows ',
-            html.A('multi-page web apps', href="https://dash.plotly.com/urls", target="_blank"),
+            dmc.Anchor('multi-page web apps', href="https://dash.plotly.com/urls", target="_blank"),
               ' to be programmed (almost entirely) in Python'
         ]
     ),
-    html.P(
+    dmc.Text(
         [
             'Dash Mantine Components', 
             'wraps the ',
@@ -30,32 +30,31 @@ layout = html.Div([
             ' React components library'
         ]
     ),
-    html.H2('This template'),
-    html.H3('Implements:'),
-    html.Ul(
+    dmc.Title('This template', order=2),
+    dmc.Title('Implements:', order=3),
+    dmc.List(
         [
-            html.Li("Sidebars responsive to viewport size")
+            dmc.ListItem("Sidebars responsive to viewport size")
         ]
     ),
-    html.H3('Doesn\'t implement:'),
-    html.Ul(
+    dmc.Title('Doesn\'t implement:', order=3),
+    dmc.List(
         [
-            html.Li("Logins")
+            dmc.ListItem("Logins")
         ]
     ),
-    html.H3('Implementation'),
-    html.Ul(
+    dmc.Title('Implementation', order=3),
+    dmc.List(
         [
-            html.Li("Code is complete for heroku depolyment"),
-            html.Li("Layout definition here is generally in styles.css for code clarity. "
+            dmc.ListItem("Code is complete for heroku depolyment"),
+            dmc.ListItem("Layout definition here is generally in styles.css for code clarity. "
                     "It could, mostly, equally be defined in the Python code"),
             
         ]
     ),
-    html.H2("Some long text to show scrolling behaviour"),
-    html.Div(
-        children=[
-            html.P(lorem) for i in range(10)
-        ]
-    ),
-])
+    dmc.Title("Some long text to show scrolling behaviour", order=2),
+] + 
+[
+    dmc.Text(lorem) for i in range(10)
+]
+)

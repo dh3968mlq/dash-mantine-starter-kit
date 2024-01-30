@@ -5,17 +5,17 @@ Layout is defined in styles.css whenever it's possible and elegant
 Many things such as position and size of elements could instead be specified in the code here
 '''
 import dash_mantine_components as dmc
-from dash import dcc
-from dash import html, page_container, clientside_callback, Input, Output
+from dash import page_container, clientside_callback, Input, Output, dcc, callback
 from dash_iconify import DashIconify
 
-# -- These replicate variables (custom properties) defined in styles.css as required
+# -- Replicate variables (custom properties) defined in styles.css as required
 header_height = 70    # px is assumed by dmc
 
 def create_header_link(icon, href, size=22, color="indigo"):
-    return dmc.Anchor(
-        dmc.ThemeIcon(
-            DashIconify(
+    "Create a link in the header, e.g. to Github or to Social"
+    return dmc.Anchor(    # https://www.dash-mantine-components.com/components/anchor
+        dmc.ThemeIcon(    # https://www.dash-mantine-components.com/components/themeicon
+            DashIconify(  # https://pypi.org/project/dash-iconify/
                 icon=icon,
                 width=size,
             ),
@@ -31,13 +31,13 @@ def create_header_link(icon, href, size=22, color="indigo"):
 def create_header_left_column(nav_data):
     hl = dmc.Col(
         [
-            dmc.MediaQuery(
-                html.H2("Dash Mantine Starter Kit"),
+            dmc.MediaQuery(  # https://www.dash-mantine-components.com/components/mediaquery
+                dmc.Title("Dash Mantine Starter Kit", order=2), # https://www.dash-mantine-components.com/components/title
                 smallerThan="lg",
                 styles={"display": "none"},
             ),
             dmc.MediaQuery(
-                html.H3("DMC Starter Kit"),
+                dmc.Title("DMC Starter Kit", order=3),
                 largerThan="lg",
                 styles={"display": "none"},
             ),
@@ -55,7 +55,7 @@ def create_header_right_column(nav_data):
                     "https://github.com/dh3968mlq/dash-mantine-starter-kit",
                 ),
                 dmc.MediaQuery(
-                    dmc.ActionIcon(
+                    dmc.ActionIcon(   # https://www.dash-mantine-components.com/components/actionicon
                         DashIconify(
                             icon="radix-icons:hamburger-menu",
                             width=18,
@@ -95,9 +95,9 @@ def create_header(nav_data):
 def create_side_navbar(nav_data):
     navbar = dmc.Navbar(
         children=[
-            html.H2("Left sidebar"),
-            html.P("Uses dmc.Navbar"),
-            html.P("This sidebar disappears when screen width is below 1200px"),
+            dmc.Title("Left sidebar", order=2),
+            dmc.Text("Uses dmc.Navbar"),
+            dmc.Text("This sidebar disappears when screen width is below 1200px"),
         ] + create_side_nav_content(nav_data),
         className="page-navbar",
     )
@@ -117,25 +117,30 @@ def create_navbar_drawer(nav_data):
                 style={"height": "100vh"},
                 pt=20,
                 children=[
-                    html.H2("Left side drawer"),
-                    html.P("Uses dmc.Drawer"),
-                    html.P("This drawer becomes available when screen width is below 1200px"),
+                    dmc.Title("Left side drawer", order=2),
+                    dmc.Text("Uses dmc.Drawer"),
+                    dmc.Text("This drawer becomes available when screen width is below 1200px"),
                 ] + create_side_nav_content(nav_data),
             )
         ],
     )
 
 def create_side_navbar_link(nav_entry):
-    link = html.P(
-        # Use dmc.Navlink (or possibly dcc.Link) here, navigates without complete page
-        # reloads, and so much smoother and faster than using html.A
-        dcc.Link(nav_entry["name"], href=nav_entry["path"])
-    )
+    # Use dmc.NavLink or dmc.Anchor here, navigates without complete page
+    # reloads, and so much smoother and faster than using html.A
+    # Note: dmc.Navlink is always block display, use dmc.Anchor for inline display of a link
+    link = dmc.NavLink(   # https://www.dash-mantine-components.com/components/navlink
+            label=nav_entry["name"], 
+            icon=DashIconify(icon='iconoir:page-right', height=14 ),
+            href=nav_entry["path"],
+            variant='subtle',
+            active=True,
+        )
     return link
 
 def create_side_nav_content(nav_data):
     nav_content = [
-            html.P("Sidebar common content")
+            dmc.Text("Sidebar common content")
     ] + \
     [create_side_navbar_link(entry) for entry in nav_data]
 
@@ -144,9 +149,9 @@ def create_side_nav_content(nav_data):
 def create_aside():
     aside = dmc.Aside(
         children=[
-            html.H2("Right SideBar"),
-            html.P("Uses dmc.Aside"),
-            html.P("This sidebar disappears when screen width is below 1500px")
+            dmc.Title("Right SideBar", order=2),
+            dmc.Text("Uses dmc.Aside"),
+            dmc.Text("This sidebar disappears when screen width is below 1500px")
         ],
         className="page-aside",
     )
@@ -159,7 +164,7 @@ def create_body():
             className="page-body"
     )
     return body
-
+# -----------------------------------------------------------
 def get_layout(nav_data):
     theme = {
                 "fontFamily": "'Inter', sans-serif",
@@ -180,6 +185,7 @@ def get_layout(nav_data):
                     create_navbar_drawer(nav_data),
                     create_aside(),
                     create_body(),
+                    dcc.Location(id="main-url"),
                 ],
             ),
         withGlobalStyles=True,
@@ -187,9 +193,20 @@ def get_layout(nav_data):
     )
     return layout
 # ---------------------------------------------------------
+# Display the navigation drawer
 clientside_callback(
     """function(n_clicks) { return true }""",
-    Output("components-navbar-drawer", "opened"),
+    Output("components-navbar-drawer", "opened", allow_duplicate=True),
     Input("drawer-hamburger-button", "n_clicks"),
     prevent_initial_call=True,
 )
+
+""" 
+@callback(
+    Output("components-navbar-drawer", "opened", allow_duplicate=True),
+    Input("main-url","href"),
+    prevent_initial_call=True,
+)
+def close_drawer(href):
+    return False
+ """

@@ -12,10 +12,10 @@
     box-sizing: border-box;
 } */
 
-p {
+/* p {
   margin-top: 6px;
   margin-bottom: 6px;
-}
+} */
 
 .page-header {
   position: fixed;
@@ -27,10 +27,10 @@ p {
   /* border: 2px solid red; */
 }
 
-.page-header * {
+/* .page-header * {
   padding: 0;
   margin: 0
-}
+} */
 
 .page-navbar {
   border: 2px solid blue;
