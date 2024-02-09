@@ -19,6 +19,15 @@ p {
   font-size: 14px
 } 
 
+/* Is this really the right way to apply a default style to dmc.Text?  */
+.mantine-Text-root:not(.mantine-Title-root), .mantine-List-item { 
+  margin-top: 6px;
+  margin-bottom: 6px;
+  line-height: 1.25;
+  font-size: 14px
+} 
+
+
 .page-header {
   position: fixed;
   height: var(--header-height);
@@ -36,7 +45,7 @@ p {
 
 /* Implements scrolling using dmc.ScrollArea */
 .page-navbar {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   width: var(--navbar-width);
   position: fixed;
   top: var(--header-height);
@@ -44,7 +53,7 @@ p {
 
 /* Implements scrolling in CSS */
 .page-navbar-drawer {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   width: var(--navbar-width);
   position: fixed;
   top: var(--header-height);
@@ -52,7 +61,7 @@ p {
 }
 
 .page-aside {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   width: var(--aside-width);
   position: fixed;
   top: var(--header-height);
@@ -66,7 +75,7 @@ p {
     max-height: 100vh;
     padding-left: 10px;
     padding-right: 10px;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     overflow: scroll;
 }
 

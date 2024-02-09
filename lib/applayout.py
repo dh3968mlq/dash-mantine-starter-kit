@@ -3,7 +3,7 @@ Create layout
 Some layout is defined in styles.css
 '''
 import dash_mantine_components as dmc
-from dash import page_container, dcc, html
+from dash import page_container, dcc
 from dash_iconify import DashIconify
 from lib.lorem import lorem
 
@@ -36,7 +36,7 @@ def create_header_left_column(nav_data):
                 styles={"display": "none"},
             ),
             dmc.MediaQuery(
-                dmc.Title("DMC Starter Kit", order=3),
+                dmc.Title("DMC Template", order=3),
                 largerThan="lg",
                 styles={"display": "none"},
             ),
@@ -68,7 +68,6 @@ def create_header_right_column(nav_data):
                 ),
             ],
             position="right",
-            spacing="xl",
         ),
         span="auto",
     )
@@ -91,18 +90,19 @@ def create_header(nav_data):
     )
     return header
 # --------------------------------------------
+# This uses dmc.ScrollArea for scrolling. 
 def create_side_navbar(nav_data):
     navbar = dmc.Navbar(
         children=
         [
-            dmc.ScrollArea(
+            dmc.ScrollArea(     # Is this undocumented at the moment? (9/2/2024)
                offsetScrollbars=True,
                pl=10,
                 children=
                 [
                     dmc.Title("Left sidebar", order=2),
-                    html.P("Uses dmc.Navbar"),
-                    html.P("This sidebar is replaced with a pop-up drawer when screen width is below 1200px"),
+                    dmc.Text("Uses dmc.Navbar"),
+                    dmc.Text("This sidebar is replaced with a pop-up drawer when screen width is below 1200px"),
                 ] + create_side_nav_content(nav_data),
             )
         ],
@@ -110,6 +110,7 @@ def create_side_navbar(nav_data):
     )
     return navbar
 # --------------------------------------------
+# This uses CSS overflow: scroll, instead of dmc.ScrollArea
 def create_navbar_drawer(nav_data):
     return dmc.Drawer(
         id="components-navbar-drawer",
@@ -120,8 +121,8 @@ def create_navbar_drawer(nav_data):
         children=
         [
             dmc.Title("Left side drawer", order=2),
-            html.P("Uses dmc.Drawer"),
-            html.P("This drawer becomes available when screen width is below 1200px"),
+            dmc.Text("Uses dmc.Drawer"),
+            dmc.Text("This drawer becomes available when screen width is below 1200px"),
         ] + create_side_nav_content(nav_data),
         className="page-navbar-drawer",
     )
@@ -130,7 +131,7 @@ def create_navbar_drawer(nav_data):
 def create_side_navbar_link(nav_entry):
     # Use dmc.NavLink or dmc.Anchor here, navigates without complete page
     # reloads, and much faster than using html.A
-    # Note: dmc.Navlink is always block display, use dmc.Anchor for inline display of a link
+    # dmc.Navlink is always block display, use dmc.Anchor for inline display of a link
     link = dmc.NavLink(   # https://www.dash-mantine-components.com/components/navlink
             label=nav_entry["name"], 
             icon=DashIconify(icon='iconoir:page-right', height=14 ),
@@ -147,7 +148,7 @@ def create_side_nav_content(nav_data):
     ] + \
     [create_side_navbar_link(entry) for entry in nav_data] + \
     [dmc.Title("Long text to show scrolling", order=3)] + \
-    [html.P(lorem) for _ in range(6)]
+    [dmc.Text(lorem) for _ in range(6)]
     return nav_content
 # --------------------------------------------
 def create_aside():
@@ -159,11 +160,11 @@ def create_aside():
                 children=[
 
             dmc.Title("Right SideBar", order=2),
-            html.P("Uses dmc.Aside"),
-            html.P("This sidebar disappears when screen width is below 1500px")
+            dmc.Text("Uses dmc.Aside"),
+            dmc.Text("This sidebar disappears when screen width is below 1500px")
         ] + \
         [dmc.Title("Long text to show scrolling", order=3)] + \
-        [html.P(lorem) for _ in range(6)]
+        [dmc.Text(lorem) for _ in range(6)]
             ),
         className="page-aside",
     )

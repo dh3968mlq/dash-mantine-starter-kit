@@ -24,9 +24,9 @@ layout = dmc.ScrollArea([
     ),
     dmc.Text(
         [
-            'Dash Mantine Components', 
-            'wraps the ',
-            'Mantine',
+            dmc.Anchor('Dash Mantine Components', href="https://www.dash-mantine-components.com/", target="_blank"), 
+            ' wraps the ',
+            dmc.Anchor('Mantine', href="https://mantine.dev/", target="_blank"),
             ' React components library'
         ]
     ),
@@ -46,7 +46,7 @@ layout = dmc.ScrollArea([
     dmc.Title('Implementation', order=3),
     dmc.List(
         [
-            dmc.ListItem("Code is complete for heroku depolyment"),
+            dmc.ListItem("Code is complete for Heroku deployment"),
             dmc.ListItem("Layout definition here is generally in styles.css for code clarity. "
                     "It could, mostly, equally be defined in the Python code"),
             
@@ -55,6 +55,6 @@ layout = dmc.ScrollArea([
     dmc.Title("Some long text to show scrolling behaviour", order=2),
 ] + 
 [
-    dmc.Text(lorem) for i in range(10)
+    dmc.Text(lorem) for i in range(20)
 ]
 )
