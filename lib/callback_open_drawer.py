@@ -1,6 +1,8 @@
 from dash import clientside_callback, Input, Output, State
 
-# Display the navigation drawer when the hamburger button is clicked
+# Toggle display of the navigation drawer when the hamburger button is clicked
+# An example of a clientside callback
+
 clientside_callback(   # https://dash.plotly.com/clientside-callbacks
     """function(n_clicks, is_already_open) { return !is_already_open }""",     # Javascript
     Output("components-navbar-drawer", "opened", allow_duplicate=True),

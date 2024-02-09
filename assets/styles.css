@@ -20,7 +20,7 @@ p {
 } 
 
 /* Is this really the right way to apply a default style to dmc.Text?  */
-.mantine-Text-root:not(.mantine-Title-root), .mantine-List-item { 
+.mantine-Text-root:not(.mantine-Title-root, .mantine-Anchor-root), .mantine-List-item { 
   margin-top: 6px;
   margin-bottom: 6px;
   line-height: 1.25;
@@ -34,18 +34,10 @@ p {
   padding-left: 25px;
   padding-right: 25px;
   text-align: center;
-  /* Uncomment for debugging */
-  /* border: 2px solid red; */
 }
-
-/* .page-header * {
-  padding: 0;
-  margin: 0
-} */
 
 /* Implements scrolling using dmc.ScrollArea */
 .page-navbar {
-  /* border: 2px solid blue; */
   width: var(--navbar-width);
   position: fixed;
   top: var(--header-height);
@@ -53,7 +45,6 @@ p {
 
 /* Implements scrolling in CSS */
 .page-navbar-drawer {
-  /* border: 2px solid blue; */
   width: var(--navbar-width);
   position: fixed;
   top: var(--header-height);
@@ -61,7 +52,6 @@ p {
 }
 
 .page-aside {
-  /* border: 2px solid blue; */
   width: var(--aside-width);
   position: fixed;
   top: var(--header-height);
@@ -73,9 +63,8 @@ p {
     margin-right: var(--aside-width); /* Position to left of Aside (~right sidebar) */
     padding-top: var(--header-height); /* Position below the Header */
     max-height: 100vh;
-    padding-left: 10px;
-    padding-right: 10px;
-    /* border: 2px solid black; */
+    padding-left: 15px;
+    padding-right: 15px;
     overflow: scroll;
 }
 

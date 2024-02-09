@@ -4,7 +4,7 @@ from lib.lorem import lorem
 
 register_page(__name__, title='Another Page')
 
-layout = html.Div(
+layout = html.Div(    # Also seems to work as a container for page content
     [
         dmc.Title('This is another page', order=1),
     ] + 

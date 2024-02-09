@@ -27,16 +27,26 @@ def create_header_link(icon, href, size=22, color="indigo"):
         target="_blank",
     )
 # --------------------------------------------
+def create_home_link(label, size='xl'):
+    return dmc.Anchor(
+        label,
+        size=size,
+        href="/",
+        underline=False,
+    )
+
 def create_header_left_column(nav_data):
     hl = dmc.Col(
         [
             dmc.MediaQuery(  # https://www.dash-mantine-components.com/components/mediaquery
-                dmc.Title("Dash Mantine Starter Kit", order=2), # https://www.dash-mantine-components.com/components/title
+                #dmc.Title("Dash Mantine Starter Kit", order=2),
+                create_home_link("Dash Mantine Starter Kit"),
                 smallerThan="lg",
                 styles={"display": "none"},
             ),
             dmc.MediaQuery(
-                dmc.Title("DMC Template", order=3),
+                #dmc.Title("DMC Template", order=3),
+                create_home_link("DMC Template", size='l'),
                 largerThan="lg",
                 styles={"display": "none"},
             ),
@@ -172,10 +182,7 @@ def create_aside():
 # --------------------------------------------
 def create_body():
     body = dmc.Container(   # https://www.dash-mantine-components.com/components/container
-            #children=dmc.ScrollArea(
-            #    offsetScrollbars=True,
-                children=page_container,
-            #),
+            children=page_container,
             fluid=True,  # no limit on width. Actual width is limited by margins, set in CSS to place it within side areas
             className="page-body"
     )
