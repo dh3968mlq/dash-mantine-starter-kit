@@ -1,10 +1,10 @@
-from dash import html, register_page
+from dash import register_page
 import dash_mantine_components as dmc
 from lib.lorem import lorem
 
 register_page(__name__, path='/', title='Dash Mantine Starter Kit')
 
-layout = html.Div([
+layout = dmc.ScrollArea([
     dmc.Title('Home page', order=1),
     dmc.Text(
         [

@@ -6,16 +6,18 @@
     --header-height: 70px;
   }
 
-/* * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} */
+} 
 
-/* p {
+p {
   margin-top: 6px;
   margin-bottom: 6px;
-} */
+  line-height: 1.25;
+  font-size: 14px
+} 
 
 .page-header {
   position: fixed;
@@ -32,29 +34,40 @@
   margin: 0
 } */
 
+/* Implements scrolling using dmc.ScrollArea */
 .page-navbar {
   border: 2px solid blue;
-  width: 300px;
+  width: var(--navbar-width);
   position: fixed;
   top: var(--header-height);
 }
 
+/* Implements scrolling in CSS */
+.page-navbar-drawer {
+  border: 2px solid blue;
+  width: var(--navbar-width);
+  position: fixed;
+  top: var(--header-height);
+  overflow: scroll
+}
+
 .page-aside {
   border: 2px solid blue;
-  width: 300px;
+  width: var(--aside-width);
   position: fixed;
   top: var(--header-height);
   right: 0;
 }
 
 .page-body {
-    /* padding: 10px; */
     margin-left: var(--navbar-width); /* Position to right of navbar (~ left sidebar) */
     margin-right: var(--aside-width); /* Position to left of Aside (~right sidebar) */
-    margin-top: var(--header-height); /* Position below the Header */
+    padding-top: var(--header-height); /* Position below the Header */
+    max-height: 100vh;
     padding-left: 10px;
     padding-right: 10px;
     border: 2px solid black;
+    overflow: scroll;
 }
 
 /* Hide (right-hand) Aside as page narrows */
