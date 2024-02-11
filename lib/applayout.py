@@ -27,26 +27,27 @@ def create_header_link(icon, href, size=22, color="indigo"):
         target="_blank",
     )
 # --------------------------------------------
-def create_home_link(label, size='xl'):
-    return dmc.Anchor(
-        label,
-        size=size,
-        href="/",
-        underline=False,
+def create_home_link(label, order=1):
+    return dmc.Title(
+        dcc.Link(   # dcc.Link is used here because dmc.Anchor appears to inherit styling from dmc.Text
+                    # and that's problematic here - we want this to be displayed as a title size, not a paragraph size
+            label,
+            href="/",
+            style={"color":"black", "text-decoration":"none"}
+        ),
+        order=order
     )
 
 def create_header_left_column(nav_data):
     hl = dmc.Col(
         [
             dmc.MediaQuery(  # https://www.dash-mantine-components.com/components/mediaquery
-                #dmc.Title("Dash Mantine Starter Kit", order=2),
                 create_home_link("Dash Mantine Starter Kit"),
                 smallerThan="lg",
                 styles={"display": "none"},
             ),
             dmc.MediaQuery(
-                #dmc.Title("DMC Template", order=3),
-                create_home_link("DMC Template", size='l'),
+                create_home_link("DMC Template", order=3),
                 largerThan="lg",
                 styles={"display": "none"},
             ),
@@ -139,16 +140,6 @@ def create_navbar_drawer(nav_data):
 
 # --------------------------------------------
 def create_side_navbar_link(nav_entry):
-    # Use dmc.NavLink or dmc.Anchor here, navigates without complete page
-    # reloads, and much faster than using html.A
-    # dmc.Navlink is always block display, use dmc.Anchor for inline display of a link
-    #link = dmc.NavLink(   # https://www.dash-mantine-components.com/components/navlink
-    #        label=nav_entry["name"], 
-    #        icon=DashIconify(icon='iconoir:page-right', height=14 ),
-    #        href=nav_entry["path"],
-    #        variant='subtle',
-    #        active=True,
-    #    )
     link = dmc.ListItem( 
             dmc.Anchor(nav_entry["name"], href=nav_entry["path"]),
             style={"padding":0, "margin":0},
@@ -159,15 +150,18 @@ def create_side_nav_content(nav_data):
     "Common content for both versions of side navbar"
     nav_content = (
         [
-            dmc.Title("Sidebar common content", order=3)
+            #dmc.Title("Sidebar common content", order=3),
+            dmc.Space(h=20),
+            dmc.Title("Navigation", order=4),
         ] + 
-        #[create_side_navbar_link(entry) for entry in nav_data] + 
         [dmc.List(
             [create_side_navbar_link(entry) for entry in nav_data],
             #icon=DashIconify(icon='iconoir:page-right', height=14 ),   # Does not appear to get vertical alignment right
             #styles={"itemIcon":{"display":"inline"}}                   # And this does not help
         )] + 
-        [dmc.Title("Long text to show scrolling", order=3)] + \
+        [   dmc.Space(h=20),
+            dmc.Title("Long text to show scrolling", order=4),
+        ] + \
         [dmc.Text(lorem) for _ in range(6)]
     )
     return nav_content
