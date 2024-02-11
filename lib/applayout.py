@@ -142,23 +142,34 @@ def create_side_navbar_link(nav_entry):
     # Use dmc.NavLink or dmc.Anchor here, navigates without complete page
     # reloads, and much faster than using html.A
     # dmc.Navlink is always block display, use dmc.Anchor for inline display of a link
-    link = dmc.NavLink(   # https://www.dash-mantine-components.com/components/navlink
-            label=nav_entry["name"], 
-            icon=DashIconify(icon='iconoir:page-right', height=14 ),
-            href=nav_entry["path"],
-            variant='subtle',
-            active=True,
+    #link = dmc.NavLink(   # https://www.dash-mantine-components.com/components/navlink
+    #        label=nav_entry["name"], 
+    #        icon=DashIconify(icon='iconoir:page-right', height=14 ),
+    #        href=nav_entry["path"],
+    #        variant='subtle',
+    #        active=True,
+    #    )
+    link = dmc.ListItem( 
+            dmc.Anchor(nav_entry["name"], href=nav_entry["path"]),
+            style={"padding":0, "margin":0},
         )
     return link
 # --------------------------------------------
 def create_side_nav_content(nav_data):
     "Common content for both versions of side navbar"
-    nav_content = [
+    nav_content = (
+        [
             dmc.Title("Sidebar common content", order=3)
-    ] + \
-    [create_side_navbar_link(entry) for entry in nav_data] + \
-    [dmc.Title("Long text to show scrolling", order=3)] + \
-    [dmc.Text(lorem) for _ in range(6)]
+        ] + 
+        #[create_side_navbar_link(entry) for entry in nav_data] + 
+        [dmc.List(
+            [create_side_navbar_link(entry) for entry in nav_data],
+            #icon=DashIconify(icon='iconoir:page-right', height=14 ),   # Does not appear to get vertical alignment right
+            #styles={"itemIcon":{"display":"inline"}}                   # And this does not help
+        )] + 
+        [dmc.Title("Long text to show scrolling", order=3)] + \
+        [dmc.Text(lorem) for _ in range(6)]
+    )
     return nav_content
 # --------------------------------------------
 def create_aside():
@@ -210,7 +221,7 @@ def get_layout(nav_data):
                     "item": text_theme,
                 }
             },
-            # -- THis attempt to get icons lined up properly with labels does not seem to work: wip
+            # -- This attempt to get icons lined up properly with labels does not seem to work: wip
             #"NavLink": {
             #    "styles": {
             #        "label": {
