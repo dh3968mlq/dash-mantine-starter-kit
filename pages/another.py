@@ -8,7 +8,13 @@ layout = dcc.Markdown('''
 
 # This is another page
 
-This page has been rendered from markdown    
+This page has been rendered from markdown 
+
+## A sample image
+                      
+This is held as static content within this app
+                      
+![Example image](/static/sample_image.png)   
                       
 ## Repeated text to show scrolling
 
