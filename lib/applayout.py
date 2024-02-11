@@ -189,9 +189,40 @@ def create_body():
     return body
 # -----------------------------------------------------------
 def get_layout(nav_data):
+    text_theme = {
+        "margin-top": 6,
+        "margin-bottom": 6,
+        "line-height": 20,   # pixels!
+        "font-size": 14,
+    }
+
     theme = {
-                "fontFamily": "'Inter', sans-serif",
-            }
+        "colorScheme": "light",   # "dark" for the default dark theme. 
+        "fontFamily": "'Inter', sans-serif",
+        "components": {
+            "Text": {
+                "styles": {
+                    "root": text_theme,
+                }
+            },
+            "List": {
+                "styles": {
+                    "item": text_theme,
+                }
+            },
+            # -- THis attempt to get icons lined up properly with labels does not seem to work: wip
+            #"NavLink": {
+            #    "styles": {
+            #        "label": {
+            #            "margin-top": 0,
+            #            "margin-bottom": 0,
+            #            "justify-content": "center",
+            #            #"line-height": 20,   # pixels!
+            #        },
+            #    }
+            #},            
+        },
+    }
 
     layout = dmc.MantineProvider(   # https://mantine.dev/theming/mantine-provider/
         theme=theme,         # https://www.dash-mantine-components.com/components/mantineprovider

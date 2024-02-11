@@ -19,15 +19,6 @@ p {
   font-size: 14px
 } 
 
-/* Is this really the right way to apply a default style to dmc.Text?  */
-.mantine-Text-root:not(.mantine-Title-root, .mantine-Anchor-root), .mantine-List-item { 
-  margin-top: 6px;
-  margin-bottom: 6px;
-  line-height: 1.25;
-  font-size: 14px
-} 
-
-
 .page-header {
   position: fixed;
   height: var(--header-height);
