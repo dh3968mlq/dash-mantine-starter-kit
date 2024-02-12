@@ -4,6 +4,7 @@
     --navbar-width: 300px;
     --aside-width: 300px;
     --header-height: 70px;
+    --footer-height: 40px;
   }
 
 * {
@@ -24,39 +25,54 @@ p {
   height: var(--header-height);
   padding-left: 25px;
   padding-right: 25px;
-  text-align: center;
+  background-color: #DDDDDD;
 }
 
 /* Implements scrolling using dmc.ScrollArea */
 .page-navbar {
-  width: var(--navbar-width);
   position: fixed;
+  width: var(--navbar-width);
   top: var(--header-height);
+  bottom: var(--footer-height);
+  overflow: scroll;
 }
 
 /* Implements scrolling in CSS */
 .page-navbar-drawer {
-  width: var(--navbar-width);
   position: fixed;
+  width: var(--navbar-width);
   top: var(--header-height);
   overflow: scroll
 }
 
 .page-aside {
-  width: var(--aside-width);
   position: fixed;
+  width: var(--aside-width);
   top: var(--header-height);
   right: 0;
+  bottom: var(--footer-height);
 }
 
 .page-body {
-    margin-left: var(--navbar-width); /* Position to right of navbar (~ left sidebar) */
-    margin-right: var(--aside-width); /* Position to left of Aside (~right sidebar) */
-    padding-top: var(--header-height); /* Position below the Header */
-    max-height: 100vh;
-    padding-left: 15px;
-    padding-right: 15px;
-    overflow: scroll;
+  position: fixed;
+  left: var(--navbar-width); /* Position to right of navbar (~ left sidebar) */
+  right: var(--aside-width); /* Position to left of Aside (~right sidebar) */
+  top: var(--header-height); /* Position below the Header */
+  bottom: var(--footer-height);
+  /* max-height: 100vh; */
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow: scroll;
+}
+
+.page-footer {
+  position: fixed;
+  bottom: 0;
+  height: var(--header-height);
+  padding-left: 25px;
+  padding-right: 25px;
+  text-align: center;
+  background-color: #DDDDDD;
 }
 
 /* Hide (right-hand) Aside as page narrows */
@@ -65,7 +81,7 @@ p {
       display: none;
   }
   .page-body {
-      margin-right: 0;
+      right: 0;
   }
 }
 
@@ -75,6 +91,6 @@ p {
       display: none;
   }
   .page-body {
-      margin-left: 0;
+      left: 0;
   }
 }

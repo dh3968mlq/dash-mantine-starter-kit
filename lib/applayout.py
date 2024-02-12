@@ -9,6 +9,7 @@ from lib.lorem import lorem
 
 # -- Replicate variables (custom properties) defined in styles.css as required
 header_height = 70    # px is assumed by dmc
+footer_height = 40
 
 def create_header_link(icon, href, size=22, color="indigo"):
     "Create a link in the header, e.g. to Github or to Social"
@@ -88,7 +89,7 @@ def create_header(nav_data):
     header = dmc.Header(
         height=header_height,   # Required here, setting it in CSS is not enough
         children=[
-            dmc.Space(h=12),  # styles.css sets all padding and margins within .page-header to 0
+            dmc.Space(h=8),  # styles.css sets all padding and margins within .page-header to 0
             dmc.Grid(
                 children=[
                     create_header_left_column(nav_data),
@@ -193,6 +194,18 @@ def create_body():
     )
     return body
 # -----------------------------------------------------------
+def create_footer():
+    footer = dmc.Footer(
+        height=footer_height,
+        fixed=True,
+        children=[
+            dmc.Space(h=6),
+            dmc.Title("Footer area", order=4)
+        ],
+        className="page-footer",
+    )
+    return footer
+# -----------------------------------------------------------
 def get_layout(nav_data):
     text_theme = {
         "margin-top": 6,
@@ -238,6 +251,7 @@ def get_layout(nav_data):
                     create_navbar_drawer(nav_data),
                     create_aside(),
                     create_body(),
+                    create_footer(),
                     dcc.Location(id="main-url"),
                 ],
             ),
