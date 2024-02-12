@@ -34,28 +34,15 @@ layout = dmc.Container( # One possible container for page content. Set fluid=Tru
                 ' React components library'
             ]
         ),
-        dmc.Title('This template', order=2),
-        dmc.Title('Implements:', order=3),
-        dmc.List(
-            [
-                dmc.ListItem("Sidebars responsive to viewport size")
+        dmc.Title('This page', order=2),
+        dmc.Text('Is implemented in Python, using dmc components'),
+        dmc.Text([
+                'See the ',
+                dmc.Anchor('description', href="/description"),
+                ' page for more details about the template'
             ]
         ),
-        dmc.Title('Doesn\'t implement:', order=3),
-        dmc.List(
-            [
-                dmc.ListItem("Logins")
-            ]
-        ),
-        dmc.Title('Implementation', order=3),
-        dmc.List(
-            [
-                dmc.ListItem("Code is complete for Heroku deployment"),
-                dmc.ListItem("Layout definition here is generally in styles.css for code clarity. "
-                        "It could, mostly, equally be defined in the Python code"),
-                
-            ]
-        ),
+        dmc.Space(h=30),
         dmc.Title("Some long text to show scrolling behaviour", order=2),
     ] + 
     [

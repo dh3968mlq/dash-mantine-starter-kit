@@ -38,3 +38,5 @@ The content of this page is stored as *markdown/description.md* and is automatic
 *pages/autogenerate.py*, execution of which is triggered on load by
 the Dash multi-page mechanism.
 
+It doesn't render very well - it uses *dcc.Markdown()*, which does not format properly when using dmc
+
