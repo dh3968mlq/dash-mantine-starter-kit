@@ -30,8 +30,8 @@ def create_header_link(icon, href, size=22, color="indigo"):
 # --------------------------------------------
 def create_home_link(label, order=1):
     return dmc.Title(
-        dcc.Link(   # dcc.Link is used here because dmc.Anchor appears to inherit styling from dmc.Text
-                    # and that's problematic here - we want this to be displayed as a title size, not a paragraph size
+        dcc.Link(   # dcc.Link is used here because dmc.Anchor appears to inherit styling explicitly applied to dmc.Text
+                    # ...and that's problematic here - we want this to be displayed as a title size, not a paragraph size
             label,
             href="/",
             style={"color":"black", "text-decoration":"none"}
@@ -42,6 +42,9 @@ def create_home_link(label, order=1):
 def create_header_left_column(nav_data):
     hl = dmc.Col(
         [
+            # dmc.MediaQuery is an alternative to using @media in CSS, but imo not a very elegant one
+            # It does allow the DMC size definitions 'lg' etc. to be used
+            # Included here to show how it's done
             dmc.MediaQuery(  # https://www.dash-mantine-components.com/components/mediaquery
                 create_home_link("Dash Mantine Starter Kit"),
                 smallerThan="lg",
@@ -151,9 +154,9 @@ def create_side_nav_content(nav_data):
     "Common content for both versions of side navbar"
     nav_content = (
         [
-            #dmc.Title("Sidebar common content", order=3),
             dmc.Space(h=20),
             dmc.Title("Navigation", order=4),
+            dmc.Text("Auto-generated from the page registry, but appears in a rather random order"),
         ] + 
         [dmc.List(
             [create_side_navbar_link(entry) for entry in nav_data],

@@ -1,0 +1,3 @@
+[submodule "dmcmarkdown"]
+	path = dmcmarkdown
+	url = git@github.com:dh3968mlq/dmcmarkdown.git
