@@ -2,13 +2,13 @@
 
 Author: David Harris 2024
 
-Code on Gitgub: https://github.com/dh3968mlq/dash-mantine-starter-kit
+Code on [Gitgub](https://github.com/dh3968mlq/dash-mantine-starter-kit)
 
 [Dash](https://dash.plotly.com/) allows [multi-page web apps](https://dash.plotly.com/)
 to be programmed (almost entirely) in Python
 
 [Dash Mantine Components](https://www.dash-mantine-components.com/)
-wraps the [Mantine](https://mantine.dev/) React components library'
+wraps the [Mantine](https://mantine.dev/) React components library
 
 ### This template
 
@@ -34,9 +34,8 @@ wraps the [Mantine](https://mantine.dev/) React components library'
 
 ### This page
 
-The content of this page is stored as *markdown/description.md* and is automatically converted for display by
-*pages/autogenerate.py*, execution of which is triggered on load by
-the Dash multi-page mechanism.
+The content of this page is stored as *markdown/description.md* and is automatically 
+converted for display by *pages/autogenerate.py*, execution of which is 
+triggered on load by the Dash multi-page mechanism.
 
-It doesn't render very well - it uses *dcc.Markdown()*, which does not format properly when using dmc
 
