@@ -1,12 +1,13 @@
 from pathlib import Path
 from dash import dcc, register_page
+from dmcmarkdown import markdown as dmcmd
 
 files = Path("markdown").glob("*.md")
 
 for file in files:
     filename = file.name[:-3]
     content = file.read_text()
-    layout = dcc.Markdown(content)
+    layout = dmcmd.Markdown(content)
 
     register_page(
         filename,
