@@ -1,14 +1,15 @@
-from dash import html, register_page, dcc
+from dash import register_page, dcc
 import dash_mantine_components as dmc
 from lib.lorem import lorem
+from markdown2dash import parse
 
 register_page(__name__, title='Another Page')
 
-layout = dcc.Markdown('''
+layout = parse('''
 
 # This is another page
 
-This page has been rendered from markdown 
+This page has been rendered from markdown using [DH's fork of markdown2dash](https://github.com/dh3968mlq/markdown2dash)
 
 ## A sample image
                       

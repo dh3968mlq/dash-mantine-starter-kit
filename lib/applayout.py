@@ -38,12 +38,12 @@ def create_home_link(label, order=1):
         ),
         order=order
     )
-
+# --------------------------------------------
 def create_header_left_column(nav_data):
     hl = dmc.Col(
         [
-            # dmc.MediaQuery is an alternative to using @media in CSS, but imo not a very elegant one
-            # It does allow the DMC size definitions 'lg' etc. to be used
+            # dmc.MediaQuery is an alternative to using @media in CSS
+            # It allows the DMC size definitions 'lg' etc. to be used
             # Included here to show how it's done
             dmc.MediaQuery(  # https://www.dash-mantine-components.com/components/mediaquery
                 create_home_link("Dash Mantine Starter Kit"),
@@ -129,8 +129,6 @@ def create_side_navbar(nav_data):
 def create_navbar_drawer(nav_data):
     return dmc.Drawer(
         id="components-navbar-drawer",
-        overlayOpacity=0.55,
-        overlayBlur=3,
         zIndex=9,
         size=300,
         children=
@@ -141,7 +139,6 @@ def create_navbar_drawer(nav_data):
         ] + create_side_nav_content(nav_data),
         className="page-navbar-drawer",
     )
-
 # --------------------------------------------
 def create_side_navbar_link(nav_entry):
     link = dmc.ListItem( 
@@ -160,8 +157,6 @@ def create_side_nav_content(nav_data):
         ] + 
         [dmc.List(
             [create_side_navbar_link(entry) for entry in nav_data],
-            #icon=DashIconify(icon='iconoir:page-right', height=14 ),   # Does not appear to get vertical alignment right
-            #styles={"itemIcon":{"display":"inline"}}                   # And this does not help
         )] + 
         [   dmc.Space(h=20),
             dmc.Title("Long text to show scrolling", order=4),
@@ -221,9 +216,9 @@ def get_layout(nav_data):
         "colorScheme": "light",   # "dark" for the default dark theme. 
         "fontFamily": "'Inter', sans-serif",
         "components": {
-            "Text": {
+            "Text": {     
                 "styles": {
-                    "root": text_theme,
+                    "root": text_theme, # Applies styles to text elements, via .mantine-Text-root
                 }
             },
             "List": {
@@ -231,33 +226,20 @@ def get_layout(nav_data):
                     "item": text_theme,
                 }
             },
-            # -- This attempt to get icons lined up properly with labels does not seem to work: wip
-            #"NavLink": {
-            #    "styles": {
-            #        "label": {
-            #            "margin-top": 0,
-            #            "margin-bottom": 0,
-            #            "justify-content": "center",
-            #            #"line-height": 20,   # pixels!
-            #        },
-            #    }
-            #},            
         },
     }
 
     layout = dmc.MantineProvider(   # https://mantine.dev/theming/mantine-provider/
         theme=theme,         # https://www.dash-mantine-components.com/components/mantineprovider
-        children=dmc.NotificationsProvider( # https://www.dash-mantine-components.com/components/notification
-                [
-                    create_header(nav_data),
-                    create_side_navbar(nav_data),
-                    create_navbar_drawer(nav_data),
-                    create_aside(),
-                    create_body(),
-                    create_footer(),
-                    dcc.Location(id="main-url"),
-                ],
-            ),
+        children= [
+            create_header(nav_data),
+            create_side_navbar(nav_data),
+            create_navbar_drawer(nav_data),
+            create_aside(),
+            create_body(),
+            create_footer(),
+            dcc.Location(id="main-url"),
+        ],
         withGlobalStyles=True,
         withNormalizeCSS=True,
     )

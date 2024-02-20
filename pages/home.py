@@ -1,5 +1,6 @@
 '''
 Home page
+Rendered by calls to dmc components
 '''
 from dash import register_page
 import dash_mantine_components as dmc
