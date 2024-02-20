@@ -1,3 +1,7 @@
 [submodule "dmcmarkdown"]
 	path = dmcmarkdown
 	url = git@github.com:dh3968mlq/dmcmarkdown.git
+
+[submodule "markdown2dash"]
+	path = markdown2dash
+	url = git@github.com:dh3968mlq/markdown2dash.git
