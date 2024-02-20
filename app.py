@@ -3,6 +3,9 @@
     Author David Harris 2024 
     # -- ... drawing on https://github.com/snehilvj/dmc-docs
 '''
+import sys
+sys.path.append('./markdown2dash')
+
 from dash import Dash, page_registry
 import gunicorn                         # Necessary for Heroku?
 from lib.applayout import get_layout
