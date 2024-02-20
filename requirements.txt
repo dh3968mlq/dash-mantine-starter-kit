@@ -3,4 +3,4 @@ gunicorn
 dash-iconify==0.1.2
 dash-mantine-components==0.12.1
 mistune==3.0.2
-opencv-python==4.9.0.80
+opencv-python
