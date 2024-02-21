@@ -1,7 +1,7 @@
 '''
     Dash / Mantine boilerplate for a basic responsive multi-page app
     Author David Harris 2024 
-    # -- ... drawing on https://github.com/snehilvj/dmc-docs
+    # -- ... based on https://github.com/snehilvj/dmc-docs, author Snehil Vijay
 '''
 import sys
 sys.path.append('./markdown2dash')

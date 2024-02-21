@@ -8,8 +8,9 @@ from dash_iconify import DashIconify
 from lib.lorem import lorem
 
 # -- Replicate variables (custom properties) defined in styles.css as required
-header_height = 70    # px is assumed by dmc
+header_height = 70    # px is assumed by dmc (usually)
 footer_height = 40
+navbar_width=300
 
 def create_header_link(icon, href, size=22, color="indigo"):
     "Create a link in the header, e.g. to Github or to Social"
@@ -46,7 +47,7 @@ def create_header_left_column(nav_data):
             # It allows the DMC size definitions 'lg' etc. to be used
             # Included here to show how it's done
             dmc.MediaQuery(  # https://www.dash-mantine-components.com/components/mediaquery
-                create_home_link("Dash Mantine Starter Kit"),
+                create_home_link("Dash Mantine Responsive Template", order=2),
                 smallerThan="lg",
                 styles={"display": "none"},
             ),
@@ -68,7 +69,7 @@ def create_header_right_column(nav_data):
                     "radix-icons:github-logo",
                     "https://github.com/dh3968mlq/dash-mantine-starter-kit",
                 ),
-                dmc.MediaQuery(
+                dmc.MediaQuery(      # Create the button to show the drawer only if the screen is below 1200px
                     dmc.ActionIcon(   # https://www.dash-mantine-components.com/components/actionicon
                         DashIconify(
                             icon="radix-icons:hamburger-menu",
@@ -92,13 +93,13 @@ def create_header(nav_data):
     header = dmc.Header(
         height=header_height,   # Required here, setting it in CSS is not enough
         children=[
-            dmc.Space(h=8),  # styles.css sets all padding and margins within .page-header to 0
+            dmc.Space(h=8),  
             dmc.Grid(
                 children=[
                     create_header_left_column(nav_data),
                     create_header_right_column(nav_data),
                 ],
-                align='center',    # Vertical alignment of content to center
+                align='center',    # Vertical alignment of content to center. (Does this work?)
             ),
         ],
         className="page-header",
@@ -127,18 +128,23 @@ def create_side_navbar(nav_data):
 # --------------------------------------------
 # This uses CSS overflow: scroll, instead of dmc.ScrollArea
 def create_navbar_drawer(nav_data):
-    return dmc.Drawer(
+    drawer = dmc.Drawer(
         id="components-navbar-drawer",
         zIndex=9,
-        size=300,
+        size=f"{navbar_width}px",   # Have to specify width here, and have to specify px 
+        #overlayBlur=3,  # Not implemented dmc 0.13.0a3?
         children=
         [
             dmc.Title("Left side drawer", order=2),
             dmc.Text("Uses dmc.Drawer"),
             dmc.Text("This drawer becomes available when screen width is below 1200px"),
-        ] + create_side_nav_content(nav_data),
+        ] + create_side_nav_content(nav_data), # + 
         className="page-navbar-drawer",
+        styles={  # This (undocumented 21/2/24) succeeds in positioning the drawer between the header and footer
+            "inner":{"top":header_height, "bottom":footer_height}
+        },
     )
+    return drawer
 # --------------------------------------------
 def create_side_navbar_link(nav_entry):
     link = dmc.ListItem( 
@@ -187,7 +193,8 @@ def create_aside():
 def create_body():
     body = dmc.Container(   # https://www.dash-mantine-components.com/components/container
             children=page_container,
-            fluid=True,  # no limit on width. Actual width is limited by margins, set in CSS to place it within side areas
+            fluid=True,     # no limit on width. Actual width is limited by margins, 
+                            # set in CSS to place it within sidebars when they are visible
             className="page-body"
     )
     return body
@@ -198,7 +205,8 @@ def create_footer():
         fixed=True,
         children=[
             dmc.Space(h=6),
-            dmc.Title("Footer area", order=4)
+            dmc.Title("Footer area", order=4,
+                      style={"color":"black", "text-decoration":"none"})
         ],
         className="page-footer",
     )
@@ -206,8 +214,8 @@ def create_footer():
 # -----------------------------------------------------------
 def get_layout(nav_data):
     text_theme = {
-        "margin-top": 6,
-        "margin-bottom": 6,
+        "margin-top": 4,
+        "margin-bottom": 4,
         "line-height": 20,   # pixels!
         "font-size": 14,
     }
@@ -223,7 +231,7 @@ def get_layout(nav_data):
             },
             "List": {
                 "styles": {
-                    "item": text_theme,
+                    "item": text_theme, # APplies text_theme to list items
                 }
             },
         },

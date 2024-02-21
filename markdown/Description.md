@@ -25,6 +25,8 @@ wraps the [Mantine](https://mantine.dev/) React components library
     * The left sidebar is replaced by a pop-up drawer
     * The title becomes shorter and smaller
 * Autogenerates content from Markdown files
+    * This uses [DH's fork of markdown2dash](https://github.com/dh3968mlq/markdown2dash),
+included as a Git submodule at present
 * Is configured for deployment on Heroku
 
 ### Outstanding challenges

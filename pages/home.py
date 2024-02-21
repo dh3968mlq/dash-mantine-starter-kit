@@ -43,8 +43,8 @@ layout = dmc.Container( # One possible container for page content. Set fluid=Tru
                 ' page for more details about the template'
             ]
         ),
-        dmc.Space(h=30),
-        dmc.Title("Some long text to show scrolling behaviour", order=2),
+        dmc.Divider(size=3),
+        dmc.Title("Long text to show scrolling", order=2),
     ] + 
     [
         dmc.Text(lorem) for i in range(20)

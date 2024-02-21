@@ -7,19 +7,6 @@
     --footer-height: 40px;
   }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-} 
-
-p {
-  margin-top: 6px;
-  margin-bottom: 6px;
-  line-height: 1.25;
-  font-size: 14px
-} 
-
 .page-header {
   position: fixed;
   height: var(--header-height);
@@ -32,34 +19,28 @@ p {
 .page-navbar {
   position: fixed;
   width: var(--navbar-width);
-  top: var(--header-height);
-  bottom: var(--footer-height);
-  overflow: scroll;
 }
 
 /* Implements scrolling in CSS */
+/* Width must be specified in code */
+/* Also see code for how to position it between the header and footer */
 .page-navbar-drawer {
-  position: fixed;
-  width: var(--navbar-width);
-  top: var(--header-height);
-  overflow: scroll
+  overflow: auto
 }
 
 .page-aside {
   position: fixed;
   width: var(--aside-width);
-  top: var(--header-height);
   right: 0;
-  bottom: var(--footer-height);
 }
 
 .page-body {
   position: fixed;
   left: var(--navbar-width); /* Position to right of navbar (~ left sidebar) */
   right: var(--aside-width); /* Position to left of Aside (~right sidebar) */
+  /* Top and bottome must be specified to position it between header and footer */
   top: var(--header-height); /* Position below the Header */
   bottom: var(--footer-height);
-  /* max-height: 100vh; */
   padding-left: 15px;
   padding-right: 15px;
   overflow: scroll;
@@ -71,7 +52,6 @@ p {
   height: var(--header-height);
   padding-left: 25px;
   padding-right: 25px;
-  text-align: center;
   background-color: #DDDDDD;
 }
 
