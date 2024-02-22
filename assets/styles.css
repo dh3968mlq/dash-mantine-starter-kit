@@ -34,11 +34,12 @@
   right: 0;
 }
 
+/* Implements scrolling in CSS */
 .page-body {
   position: fixed;
   left: var(--navbar-width); /* Position to right of navbar (~ left sidebar) */
   right: var(--aside-width); /* Position to left of Aside (~right sidebar) */
-  /* Top and bottome must be specified to position it between header and footer */
+  /* Top and bottom must be specified here to position it between header and footer */
   top: var(--header-height); /* Position below the Header */
   bottom: var(--footer-height);
   padding-left: 15px;

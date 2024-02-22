@@ -2,7 +2,7 @@
 auto generate pages from all .md files held in ./markdown
 '''
 from pathlib import Path
-from dash import dcc, register_page
+from dash import register_page
 from markdown2dash import parse
 
 files = Path("markdown").glob("*.md")

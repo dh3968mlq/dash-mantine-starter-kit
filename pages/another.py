@@ -9,7 +9,8 @@ layout = parse('''
 
 # This is another page
 
-This page has been rendered from markdown using [DH's fork of markdown2dash](https://github.com/dh3968mlq/markdown2dash)
+This page has been rendered from markdown 
+using [DH's fork of markdown2dash](https://github.com/dh3968mlq/markdown2dash)
 
 ## A sample image
                       

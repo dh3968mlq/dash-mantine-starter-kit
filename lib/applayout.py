@@ -231,7 +231,7 @@ def get_layout(nav_data):
             },
             "List": {
                 "styles": {
-                    "item": text_theme, # APplies text_theme to list items
+                    "item": text_theme, # Applies text_theme to list items
                 }
             },
         },
