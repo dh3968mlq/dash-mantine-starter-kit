@@ -8,8 +8,8 @@ from dash_iconify import DashIconify
 from lib.lorem import lorem
 
 # -- Replicate variables (custom properties) defined in styles.css as required
-header_height = 70    # px is assumed by dmc (usually)
-footer_height = 40
+header_height = 34    # The height of an h2. px is assumed by dmc (usually)
+footer_height = 24    # The height of an h5
 navbar_width=300
 
 def create_header_link(icon, href, size=22, color="indigo"):
@@ -20,24 +20,24 @@ def create_header_link(icon, href, size=22, color="indigo"):
                 icon=icon,
                 width=size,
             ),
-            variant="outline",
-            radius=30,
-            size=36,
-            color=color,
+            size=size,
+            style={"margin-top":"4px"}
         ),
         href=href,
         target="_blank",
     )
 # --------------------------------------------
 def create_home_link(label, order=1):
+    topmargins = [0,0,2,4,5,6]
     return dmc.Title(
         dcc.Link(   # dcc.Link is used here because dmc.Anchor appears to inherit styling explicitly applied to dmc.Text
                     # ...and that's problematic here - we want this to be displayed as a title size, not a paragraph size
             label,
             href="/",
-            style={"color":"black", "text-decoration":"none"}
+            style={"color":"black", "text-decoration":"none",},
         ),
-        order=order
+        order=order,
+        style={"margin-top":f"{topmargins[order-1]}px"},
     )
 # --------------------------------------------
 def create_header_left_column(nav_data):
@@ -52,7 +52,7 @@ def create_header_left_column(nav_data):
                 styles={"display": "none"},
             ),
             dmc.MediaQuery(
-                create_home_link("DMC Template", order=3),
+                create_home_link("DMC Template", order=4),
                 largerThan="lg",
                 styles={"display": "none"},
             ),
@@ -73,11 +73,11 @@ def create_header_right_column(nav_data):
                     dmc.ActionIcon(   # https://www.dash-mantine-components.com/components/actionicon
                         DashIconify(
                             icon="radix-icons:hamburger-menu",
-                            width=18,
+                            width=22,
                         ),
                         id="drawer-hamburger-button",
                         variant="outline",
-                        size=36,
+                        size=22,
                     ),
                     largerThan=1200,
                     styles={"display": "none"},
@@ -93,13 +93,13 @@ def create_header(nav_data):
     header = dmc.Header(
         height=header_height,   # Required here, setting it in CSS is not enough
         children=[
-            dmc.Space(h=8),  
+            #dmc.Space(h=4),  
             dmc.Grid(
                 children=[
                     create_header_left_column(nav_data),
                     create_header_right_column(nav_data),
                 ],
-                align='center',    # Vertical alignment of content to center. (Does this work?)
+                #align='center',    # Vertical alignment of content to center. (Does this work?)
             ),
         ],
         className="page-header",
@@ -204,8 +204,7 @@ def create_footer():
         height=footer_height,
         fixed=True,
         children=[
-            dmc.Space(h=6),
-            dmc.Title("Footer area", order=4,
+            dmc.Title("Footer area", order=5,
                       style={"color":"black", "text-decoration":"none"})
         ],
         className="page-footer",
@@ -219,6 +218,7 @@ def get_layout(nav_data):
         "line-height": 20,   # pixels!
         "font-size": 14,
     }
+    #text_theme = {}
 
     theme = {
         "colorScheme": "light",   # "dark" for the default dark theme. 

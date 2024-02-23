@@ -20,4 +20,4 @@ server = app.server                     # Necessary for Heroku?
 app.layout = get_layout(page_registry.values())
 
 if __name__ == "__main__":
-    app.run(debug=False, host='0.0.0.0', port=8050)  # debug=True seems a bit unreliable with Mantine components
+    app.run(debug=False, host='0.0.0.0', port=8050)  

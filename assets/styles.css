@@ -3,15 +3,15 @@
 :root {
     --navbar-width: 300px;
     --aside-width: 300px;
-    --header-height: 70px;
-    --footer-height: 40px;
+    --header-height: 34px;   /* The height of an h2 */
+    --footer-height: 24px;   /* The height of an h5 */
   }
 
 .page-header {
   position: fixed;
   height: var(--header-height);
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
   background-color: #DDDDDD;
 }
 
@@ -51,8 +51,8 @@
   position: fixed;
   bottom: 0;
   height: var(--header-height);
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
   background-color: #DDDDDD;
 }
 
