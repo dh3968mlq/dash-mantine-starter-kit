@@ -5,7 +5,7 @@ Some layout is defined in styles.css
 import dash_mantine_components as dmc
 from dash import page_container, dcc
 from dash_iconify import DashIconify
-from lib.lorem import lorem
+from defaultlayouts.lorem import lorem
 
 # -- Replicate variables (custom properties) defined in styles.css as required
 header_height = 34    # The height of an h2. px is assumed by dmc (usually)

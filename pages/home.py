@@ -4,7 +4,7 @@ Rendered by calls to dmc components
 '''
 from dash import register_page
 import dash_mantine_components as dmc
-from lib.lorem import lorem
+from defaultlayouts.lorem import lorem
 
 register_page(__name__, path='/', title='Dash Mantine Starter Kit') # https://dash.plotly.com/urls
 

@@ -5,7 +5,7 @@ from pathlib import Path
 from dash import register_page
 from markdown2dash import parse
 
-files = Path("markdown").glob("*.md")
+files = Path("posts").glob("*.md")
 
 for file in files:
     filename = file.name[:-3]
