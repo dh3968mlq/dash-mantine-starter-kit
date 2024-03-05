@@ -3,11 +3,13 @@ import dash_mantine_components as dmc
 from defaultlayouts.lorem import lorem
 from markdown2dash import parse
 
-register_page(__name__, title='Another Page')
+register_page(module=__name__,
+              name="Sample Page",
+              title='Sample Page')
 
 layout = parse('''
 
-# This is another page
+## Sample Page
 
 This page has been rendered from markdown 
 using [DH's fork of markdown2dash](https://github.com/dh3968mlq/markdown2dash)
@@ -16,7 +18,7 @@ using [DH's fork of markdown2dash](https://github.com/dh3968mlq/markdown2dash)
                       
 This is held as static content within this app
                       
-![Example image](/static/sample_image.png)   
+![Example image](/static/pexels-pixabay-147411_cropped.png)   
                       
 ## Repeated text to show scrolling
 

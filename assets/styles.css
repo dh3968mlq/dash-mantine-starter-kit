@@ -18,7 +18,12 @@
 /* Implements scrolling using dmc.ScrollArea */
 .page-navbar {
   position: fixed;
+  left:0;
+  top: var(--header-height); 
+  bottom: var(--footer-height);
   width: var(--navbar-width);
+  border-right : 2px solid lightgray;
+  background-color: white; 
 }
 
 /* Implements scrolling in CSS */
@@ -32,6 +37,10 @@
   position: fixed;
   width: var(--aside-width);
   right: 0;
+  top: var(--header-height); 
+  bottom: var(--footer-height);
+  border-left : 2px solid lightgray;
+  background-color: white; 
 }
 
 /* Implements scrolling in CSS */
@@ -44,7 +53,10 @@
   bottom: var(--footer-height);
   padding-left: 15px;
   padding-right: 15px;
-  overflow: scroll;
+  overflow: auto;
+  background-color: white; 
+  z-index: 9;   /* Needed for when children are positioned over the left sidebar */
+                /* Must be less than z-index of footer and of dmc.Drawer (=10?)   */
 }
 
 .page-footer {

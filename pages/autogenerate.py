@@ -13,6 +13,8 @@ for file in files:
     layout = parse(content)
 
     register_page(
-        filename,
+        module=filename,
+        path=f"/posts/{filename.lower()}",
+        name=filename.replace("-"," ").replace("_"," "),
         layout=layout,
     )

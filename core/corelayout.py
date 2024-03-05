@@ -12,8 +12,9 @@ def createlayout(
         popuptitle="",
         rightsidebarcontents=None,
         footercontents=None,
-        header_height=50,       # Must correspond to value set in styles.css
-        footer_height = 30,      # Ditto
+        header_height=34,       # Must correspond to value set in styles.css
+        footer_height = 24,      # Ditto
+        theme={}
         ):
     contents = [
             html.Div(children=headercontents, className="page-header"),
@@ -33,8 +34,9 @@ def createlayout(
     if popupcontents is not None:
         contents.append(
             dmc.Drawer(
-                id="components-navbar-drawer",
+                id="page-default-drawer",
                 zIndex=9,
+                title=popuptitle,
                 size=f"{navbar_width}px",   # Have to specify width here, and have to specify px 
                 #overlayBlur=3,  # Not implemented dmc 0.13.0a3?
                 children=popupcontents,
@@ -51,5 +53,11 @@ def createlayout(
     if footercontents is not None:
         contents.append(html.Div(children=footercontents, className="page-footer"))
 
-    layout = dbc.Container(children= contents)
+    layout = dmc.MantineProvider(   # https://mantine.dev/theming/mantine-provider/
+        theme=theme,         # https://www.dash-mantine-components.com/components/mantineprovider
+        children= contents,
+        withGlobalStyles=True,
+        withNormalizeCSS=True,
+    )
+ 
     return layout
