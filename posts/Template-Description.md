@@ -33,6 +33,8 @@ wraps the [Mantine](https://mantine.dev/) React components library
     * This uses [DH's fork of markdown2dash](https://github.com/dh3968mlq/markdown2dash),
 included as a Git submodule at present
 * Is configured for deployment on Heroku
+* Is not configured as a PyPI package. 
+    * Just download any code you're interested in and modify it as you please
 
 ### This page
 

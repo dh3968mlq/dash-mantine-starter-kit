@@ -10,6 +10,12 @@ register_page(__name__,
               name="Home Page",
               path='/', title='Dash Mantine Template') # https://dash.plotly.com/urls
 
+stackitemstyle = {
+    "border": f"1px solid gray",
+    "border-radius": 4,
+    "textAlign": "center",
+}
+
 layout = dmc.Container( # One possible container for page content. Set fluid=True to avoid width restrictions
     [
         dmc.Title('A responsive site template using' +
@@ -51,11 +57,12 @@ layout = dmc.Container( # One possible container for page content. Set fluid=Tru
         ),
         dmc.Title('Some Stacking Elements', order=3),
         dmc.Grid([   # https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/
-            dmc.Col(html.Div(dmc.Title("Item 1", order=3), className="bg-primary rounded-2"), span=4),
-            dmc.Col(html.Div(dmc.Title("Item 2", order=3), className="bg-secondary rounded-2"), span=4),
-            dmc.Col(html.Div(dmc.Title("Item 3", order=3), className="bg-info rounded-2"), span=4),
+            dmc.Col(html.Div(dmc.Title("Item 1", order=3), style=stackitemstyle | {"background-color" : "lightgray"}), span=12, lg=4),
+            dmc.Col(html.Div(dmc.Title("Item 2", order=3), style=stackitemstyle | {"background-color" : "lightcyan"}), span=12, lg=4),
+            dmc.Col(html.Div(dmc.Title("Item 3", order=3), style=stackitemstyle | {"background-color" : "lightpink"}), span=12, lg=4),
             ],
         ),
+        dmc.Space(h=6),
         dmc.Divider(size=3),
         dmc.Title("Long text to show scrolling", order=2),
     ] + 

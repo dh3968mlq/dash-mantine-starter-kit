@@ -1,6 +1,7 @@
 import dash_mantine_components as dmc
 from dash_iconify import DashIconify
 from dash import dcc
+from core import hamburger
 
 # -- Replicate variables (custom properties) defined in styles.css as required
 header_height = 34    # The height of an h2. px is assumed by dmc (usually)
@@ -35,22 +36,26 @@ def home_link(label, order=1):
 # --------------------------------------------
 def header_left_column():
     hl = dmc.Col(
-        [
-            # dmc.MediaQuery is an alternative to using @media in CSS
-            # It allows the DMC size definitions 'lg' etc. to be used
-            # Included here to show how it's done
-            dmc.MediaQuery(  # https://www.dash-mantine-components.com/components/mediaquery
-                home_link("Dash Mantine Responsive Template", order=2),
-                smallerThan="lg",
-                styles={"display": "none"},
-            ),
-            dmc.MediaQuery(
-                home_link("DMC Template", order=4),
-                largerThan="lg",
-                styles={"display": "none"},
-            ),
-        ],
-        span="content",
+        children=dmc.Group
+        (
+            children=[
+                hamburger.hamburger(),
+                # dmc.MediaQuery is an alternative to using @media in CSS
+                # It allows the DMC size definitions 'lg' etc. to be used
+                # Included here to show how it's done
+                dmc.MediaQuery(  # https://www.dash-mantine-components.com/components/mediaquery
+                    home_link("Dash Mantine Responsive Template", order=2),
+                    smallerThan="lg",
+                    styles={"display": "none"},
+                ),
+                dmc.MediaQuery(
+                    home_link("DMC Template", order=4),
+                    largerThan="lg",
+                    styles={"display": "none"},
+                ),
+            ],
+        ),
+        span="auto",
     )
     return hl
 # --------------------------------------------
@@ -61,19 +66,6 @@ def header_right_column():
                 header_link(
                     "radix-icons:github-logo",
                     "https://github.com/dh3968mlq/dash-mantine-starter-kit",
-                ),
-                dmc.MediaQuery(      # Create the button to show the drawer only if the screen is below 1200px
-                    dmc.ActionIcon(   # https://www.dash-mantine-components.com/components/actionicon
-                        DashIconify(
-                            icon="radix-icons:hamburger-menu",
-                            width=22,
-                        ),
-                        id="drawer-hamburger-button",
-                        variant="outline",
-                        size=22,
-                    ),
-                    largerThan=1200,
-                    styles={"display": "none"},
                 ),
             ],
             position="right",
