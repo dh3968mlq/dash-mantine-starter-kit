@@ -1,4 +1,3 @@
-import dash_bootstrap_components as dbc
 from dash import html, page_container, dcc
 import dash_mantine_components as dmc
 

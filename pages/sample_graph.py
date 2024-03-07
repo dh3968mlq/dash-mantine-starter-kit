@@ -2,7 +2,6 @@
 from dash import html, dash_table, dcc, callback, Output, Input, register_page, ctx
 import pandas as pd
 import plotly.express as px
-import dash_bootstrap_components as dbc
 import dash_mantine_components as dmc
 
 header_height = 50    
