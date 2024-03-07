@@ -69,8 +69,9 @@ def header_right_column():
                 ),
             ],
             position="right",
+            grow=False,
         ),
-        span="auto",
+        span="content",
     )
     return hr
 # --------------------------------------------
@@ -84,6 +85,7 @@ def header():
                     header_left_column(),
                     header_right_column(),
                 ],
+                justify='space-between',
                 #align='center',    # Vertical alignment of content to center. (Does this work?)
             ),
         ],

@@ -46,10 +46,9 @@ Some content here is rendered from Markdown, some (such as the image below) in P
             dmc.Text("Uses dbc.Offcanvas"),
             dcc.Link("Home", href="/"),
         ],
-    #    style={   # Styling .page-navbar in CSS doesn't seem to work to do this...
-    #        "top":f"{header_height}px",
-    #        "bottom":f"{footer_height}px",
-    #    }
+        styles={  # Positioning drawer between the header and footer
+            "inner":{"top":header_height, "bottom":footer_height}
+        }
     ),
     # -- Custom right sidebar. This just hides the default
     dmc.Container(children="", className="page-aside")

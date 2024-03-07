@@ -30,6 +30,11 @@ layout = dmc.Container( # One possible container for page content. Set fluid=Tru
         dmc.Space(h=12),
         dmc.Image(src="/static/pexels-pixabay-262367-cropped2.jpg", #width="100%",
                  ),
+        dmc.Text([
+            "This template has open source (MIT License) boilerplate code for a responsive site implemented in Dash Bootstrap ",
+            "Components, including independently scrolling sidebars on wide screens, a popup "
+            "navigation menu on small screens and customisable sidebars"
+        ]),
         dmc.Title('Dash and Mantine Components', order=2),
         dmc.Text(
             [

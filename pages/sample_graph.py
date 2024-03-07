@@ -69,9 +69,8 @@ layout = [
             className='bg-info rounded-1 my-2'
         ),
         ],
-        style={   # Styling .page-navbar in CSS doesn't seem to work to do this...
-            "top":f"{header_height}px",
-            "bottom":f"{footer_height}px",
+        styles={  # This (undocumented 21/2/24) succeeds in positioning the drawer between the header and footer
+            "inner":{"top":header_height, "bottom":footer_height}
         }
     ),
 ]
