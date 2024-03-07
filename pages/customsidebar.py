@@ -4,7 +4,7 @@ import dash_mantine_components as dmc
 
 register_page(module=__name__, 
               name="Page with customised sidebar",
-              title='Dash Bootstrap Template')
+              title='Dash Mantine Template')
 
 header_height = 34    
 footer_height = 24
@@ -43,7 +43,7 @@ Some content here is rendered from Markdown, some (such as the image below) in P
         children=
         [
             dmc.Text("This page has a custom left pop-up that replaces the default."),
-            dmc.Text("Uses dbc.Offcanvas"),
+            dmc.Text("Uses dmc.Drawer"),
             dcc.Link("Home", href="/"),
         ],
         styles={  # Positioning drawer between the header and footer

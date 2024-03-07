@@ -22,7 +22,7 @@ layout = dmc.Container( # One possible container for page content. Set fluid=Tru
                 ' Dash and Dash Mantine Components. ', order=3),
         dmc.Center(dmc.Button(
             children=[
-                dcc.Link('Code on Github', href="https://github.com/dh3968mlq/dash-bootstrap-responsive-template",
+                dcc.Link('Code on Github', href="https://github.com/dh3968mlq/dash-mantine-starter-kit",
                     target="_blank", 
                 ),
             ]
@@ -31,7 +31,7 @@ layout = dmc.Container( # One possible container for page content. Set fluid=Tru
         dmc.Image(src="/static/pexels-pixabay-262367-cropped2.jpg", #width="100%",
                  ),
         dmc.Text([
-            "This template has open source (MIT License) boilerplate code for a responsive site implemented in Dash Bootstrap ",
+            "This template has open source (MIT License) boilerplate code for a responsive site implemented in Dash Mantine ",
             "Components, including independently scrolling sidebars on wide screens, a popup "
             "navigation menu on small screens and customisable sidebars"
         ]),
@@ -61,7 +61,7 @@ layout = dmc.Container( # One possible container for page content. Set fluid=Tru
             ]
         ),
         dmc.Title('Some Stacking Elements', order=3),
-        dmc.Grid([   # https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/
+        dmc.Grid([   
             dmc.Col(html.Div(dmc.Title("Item 1", order=3), style=stackitemstyle | {"background-color" : "lightgray"}), span=12, lg=4),
             dmc.Col(html.Div(dmc.Title("Item 2", order=3), style=stackitemstyle | {"background-color" : "lightcyan"}), span=12, lg=4),
             dmc.Col(html.Div(dmc.Title("Item 3", order=3), style=stackitemstyle | {"background-color" : "lightpink"}), span=12, lg=4),

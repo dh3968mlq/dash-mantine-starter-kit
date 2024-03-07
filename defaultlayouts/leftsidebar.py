@@ -68,7 +68,6 @@ def side_navbar():
 # This uses CSS overflow: scroll, instead of dmc.ScrollArea
 def navbar_drawer():
     contents = [
-            #dmc.Title("Left side drawer", order=2),
             dmc.Text("Uses dmc.Drawer"),
             dmc.Text("This drawer becomes available when screen width is below 1200px"),
         ] + side_nav_content(idprefix="drawer")
